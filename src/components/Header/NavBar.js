@@ -15,6 +15,8 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
+import ShoppingCart from './CartWidget.js';
+
 
 const pages = ['CALZADO', 'INDUMENTARIA', 'ACCESORIOS'];
 const settings = ['Mi perfil', 'Mis pedidos', 'Mis datos de entrega', 'Cerrar sesión'];
@@ -154,7 +156,7 @@ const ResponsiveAppBar = () => {
                             textDecoration: 'none',
                         }}
                     >
-                        LOGO
+                        NAIKY*STORE
                     </Typography>
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                         {pages.map((page) => (
@@ -177,6 +179,9 @@ const ResponsiveAppBar = () => {
                             inputProps={{ 'aria-label': 'search' }}
                         />
                     </Search>
+
+
+                    <ShoppingCart/>
 
                     <Box sx={{ flexGrow: 0 }}>
                         <Tooltip title="Configuración">
