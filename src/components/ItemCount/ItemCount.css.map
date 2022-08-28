@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,qBAAqB,CAAC;EAClB,MAAM,EAAE,SAAS;EACjB,KAAK,EAAE,GAAG;CAKb;;AAPD,AAII,qBAJiB,CAIjB,aAAa,CAAC;EACd,MAAM,EAAE,MAAM;CACb",
+    "sources": [
+        "ItemCount.scss"
+    ],
+    "names": [],
+    "file": "ItemCount.css"
+}

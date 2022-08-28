@@ -1,4 +1,4 @@
-import './ItemListContainer.css'
+import './ItemListContainer.scss'
 
 const ItemListContainer = ( {nombre='Nombre del usuario', mensaje='Mensaje publicitario'} ) => { 
 

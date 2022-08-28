@@ -1,9 +1,9 @@
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
-const ShoppingCart = () => {
+const CartWidget = () => {
     return (
         <ShoppingCartIcon sx={{ display: { xs: 'flex', md: 'flex' }, mx: 1 }} />
     );
 };
 
-export default ShoppingCart
+export default CartWidget

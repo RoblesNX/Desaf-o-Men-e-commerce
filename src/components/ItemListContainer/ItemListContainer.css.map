@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,MAAM,CAAC;EACH,UAAU,EAAE,KAAK;EACjB,WAAW,EAAE,IAAI;EACjB,YAAY,EAAE,IAAI;EAClB,KAAK,EAAE,GAAG;CACb",
+    "sources": [
+        "ItemListContainer.scss"
+    ],
+    "names": [],
+    "file": "ItemListContainer.css"
+}

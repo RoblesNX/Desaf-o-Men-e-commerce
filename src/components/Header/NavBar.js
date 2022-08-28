@@ -15,7 +15,7 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
-import ShoppingCart from './CartWidget.js';
+import CartWidget from './CartWidget.js';
 
 
 const pages = ['CALZADO', 'INDUMENTARIA', 'ACCESORIOS'];
@@ -61,7 +61,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     },
 }));
 
-const ResponsiveAppBar = () => {
+const NavBar = () => {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -181,7 +181,7 @@ const ResponsiveAppBar = () => {
                     </Search>
 
 
-                    <ShoppingCart/>
+                    <CartWidget/>
 
                     <Box sx={{ flexGrow: 0 }}>
                         <Tooltip title="Configuración">
@@ -217,4 +217,4 @@ const ResponsiveAppBar = () => {
         </AppBar>
     );
 };
-export default ResponsiveAppBar;
+export default NavBar;
