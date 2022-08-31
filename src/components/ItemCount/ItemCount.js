@@ -1,30 +1,31 @@
+import { useState } from "react";
 import * as React from 'react';
 import Button from '@mui/material/Button';
-import './ItemCount.scss';
-import { useState } from 'react';
+import { Container } from "@mui/system";
 
-const ItemCount = () => {
-
-    const [counter, setCounter] = useState(0)
-
-    const handlesumar = () => {
-        setCounter(counter + 1)
-    }
-
-    const handlerestar = () => {
-        if (counter > 0) {
-            setCounter(counter - 1)
+const ItemCount = ({ stock }) => {
+    const [counter, setCounter] = useState(0);
+    const handleSumar = () => {
+        if (counter < stock) {
+            setCounter(counter + 1);
         }
-    }
+    };
+
+    const handleRestar = () => {
+        if (counter > 0) {
+            setCounter(counter - 1);
+        }
+    };
 
     return (
-        <div className='item-count-container'>
-            <h2>Contador</h2>
-            <Button variant="contained" onClick={handlerestar}> - </Button>
-            <span className='count-number'>{counter}</span>
-            <Button variant="contained" onClick={handlesumar}> + </Button>
+        <div>
+            <Container/>
+            <Button variant="contained" sx={{ padding: `5px` }} onClick={handleRestar}>-</Button>
+            <span style={{ padding: 25 }} className='count-number'>{counter}</span>
+            <Button variant="contained" sx={{ padding: `5px` }} onClick={handleSumar}>+</Button>
+            <Container />
         </div>
-    )
-}
+    );
+};
 
-export default ItemCount
+export default ItemCount;

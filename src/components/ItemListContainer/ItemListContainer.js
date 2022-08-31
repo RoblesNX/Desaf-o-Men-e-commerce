@@ -1,12 +1,26 @@
-import './ItemListContainer.scss'
+import { useEffect, useState } from 'react';
+import { getData } from '../../helpers/getData';
+import ItemList from '../ItemList/ItemList';
 
-const ItemListContainer = ( {nombre='Nombre del usuario', mensaje='Mensaje publicitario'} ) => { 
+const ItemListContainer = () => {
+
+    const [productos, setProductos] = useState([])
+
+    useEffect(() => {
+        getData()
+            .then((res) => {
+                setProductos(res)
+            })
+
+            .finally(() => {
+                // console.log("Fin del proceso")
+            })
+
+    }, [])
 
     return (
-        <div className="lista">
-            <h2>Hola {nombre}</h2>
-            <hr/>
-            <p>Mensaje publicitario: {mensaje}</p>
+        <div>
+            <ItemList productos={productos}/>
         </div>
     );
 }
