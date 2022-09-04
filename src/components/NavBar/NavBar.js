@@ -16,10 +16,24 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import CartWidget from './CartWidget.js';
+import { Link } from 'react-router-dom';
 
-
-const pages = ['CALZADO', 'INDUMENTARIA', 'ACCESORIOS'];
 const settings = ['Mi perfil', 'Mis pedidos', 'Mis datos de entrega', 'Cerrar sesión'];
+const pages = [
+
+    {
+        categoria: 'Calzado',
+        link: "/productos/calzado"
+    },
+    {
+        categoria: 'Indumentaria',
+        link: '/productos/indumentaria'
+    },
+    {
+        categoria: 'Accesorios',
+        link: '/productos/accesorios'
+    }
+];
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -88,8 +102,6 @@ const NavBar = () => {
                     <Typography
                         variant="h6"
                         noWrap
-                        component="a"
-                        href="/"
                         sx={{
                             mr: 2,
                             display: { xs: 'none', md: 'flex' },
@@ -100,7 +112,7 @@ const NavBar = () => {
                             textDecoration: 'none',
                         }}
                     >
-                        NAIKY*STORE
+                         <Link to='/'>NAIKY*LG</Link>
                     </Typography>
 
                     <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -132,9 +144,9 @@ const NavBar = () => {
                                 display: { xs: 'block', md: 'none' },
                             }}
                         >
-                            {pages.map((page) => (
-                                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                                    <Typography textAlign="center">{page}</Typography>
+                            {pages.map((page, index) => (
+                                <MenuItem key={index} onClick={handleCloseNavMenu}>
+                                    <Link to={page.link}>{page.categoria}</Link>
                                 </MenuItem>
                             ))}
                         </Menu>
@@ -143,8 +155,6 @@ const NavBar = () => {
                     <Typography
                         variant="h5"
                         noWrap
-                        component="a"
-                        href=""
                         sx={{
                             mr: 2,
                             display: { xs: 'flex', md: 'none' },
@@ -156,16 +166,18 @@ const NavBar = () => {
                             textDecoration: 'none',
                         }}
                     >
-                        NAIKY*STORE
+                        <Link to='/'>NAIKY*S</Link>
                     </Typography>
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-                        {pages.map((page) => (
+                        {pages.map((page, index) => (
                             <Button
-                                key={page}
+                                key={index}
                                 onClick={handleCloseNavMenu}
                                 sx={{ my: 2, color: 'white', display: 'block' }}
                             >
-                                {page}
+                                <Link key={page.id} to={page.link}>
+                                    {page.categoria}
+                                </Link>
                             </Button>
                         ))}
                     </Box>
@@ -181,7 +193,7 @@ const NavBar = () => {
                     </Search>
 
 
-                    <CartWidget/>
+                    <CartWidget />
 
                     <Box sx={{ flexGrow: 0 }}>
                         <Tooltip title="Configuración">
