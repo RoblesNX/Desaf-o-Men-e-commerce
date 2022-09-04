@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useState } from "react";
-import Button from '@mui/material/Button';
+import { Button, ButtonGroup } from '@mui/material';
 import { Container } from "@mui/system";
 
 const ItemCount = ({ stock }) => {
@@ -18,14 +18,14 @@ const ItemCount = ({ stock }) => {
     };
 
     return (
-        <div>
-            <Container />
-            <Button size="small" variant="contained" sx={{ padding: `5px` }} onClick={handleRestar}>-</Button>
-            <span style={{ padding: 25 }} className='count-number'>{counter}</span>
-            <Button size="small" variant="contained" sx={{ padding: `5px` }} onClick={handleSumar}>+</Button>
-            <Container />
-
-        </div>
+        <Container sx={{ display: 'flex', flexFlow: 'column', alignItems: 'center' }}>
+            <ButtonGroup sx={{ my: 2 }}variant="contained" size='smaill' aria-label="outlined primary button group">
+                <Button sx={{ px: 3 }} onClick={handleRestar}>-</Button>
+                <Button variant="outlined" sx={{ px: 3 }}>{counter}</Button>
+                <Button sx={{ px: 3 }} onClick={handleSumar}>+</Button>
+            </ButtonGroup>
+            <Button color="warning" size="small" variant="contained" sx={{ px: 2, py: 1 }}>Agregar al carrito</Button>
+        </Container>
     );
 };
 

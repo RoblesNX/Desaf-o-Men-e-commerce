@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import getData from '../../helpers/getData';
 import ItemList from '../ItemList/ItemList';
 import { useParams } from "react-router-dom";
+import { Container } from '@mui/system';
 
 const ItemListContainer = () => {
 
@@ -28,9 +29,9 @@ const ItemListContainer = () => {
     }, [categoryId])
 
     return (
-        <div>
+        <Container sx={{marginTop: 15}}>
             {loading ?  <h2>Cargando...</h2> :  <ItemList productos={productos}  />}
-        </div>
+        </Container>
     );
 }
 

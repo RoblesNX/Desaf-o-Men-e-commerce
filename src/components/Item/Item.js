@@ -1,9 +1,6 @@
 import * as React from 'react';
-import Card from '@mui/material/Card';
-import CardMedia from '@mui/material/CardMedia';
-import CardActions from '@mui/material/CardActions';
 import { Link } from 'react-router-dom';
-import { Button, CardHeader, Avatar } from '@mui/material';
+import { Button, CardHeader, Avatar, Card, CardMedia, CardActions } from '@mui/material';
 import { red } from '@mui/material/colors';
 import IconButton from '@mui/material/IconButton';
 
@@ -35,7 +32,7 @@ const Item = ({ producto }) => {
 
                 />
 
-                <CardActions sx={{ justifyContent: 'center' }}>
+                <CardActions>
                     <Button sx={{borderRadius: 2}} fullWidth size="small" variant="contained" component={Link} to={`/item/${producto.id}`}>Ver detalle del producto</Button>
                 </CardActions>
 

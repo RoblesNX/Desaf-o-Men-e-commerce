@@ -3,7 +3,7 @@ import Item from "../Item/Item"
 
 const ItemList = ({ productos = [] }) => {
     return (
-        <Container sx={{ padding: `100px` }}>
+        <Container>
             <Grid container rowSpacing={10} columnSpacing={10}>
                 {productos.map((prod) => {
                     return <Grid item md={4} key={prod.id}>
