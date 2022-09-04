@@ -5,24 +5,22 @@ import ItemDetailContainer from './components/ItemDetailContainer/ItemDetailCont
 
 function App() {
   return (
+      <BrowserRouter>
 
-    <BrowserRouter>
+        <NavBar/>
 
-      <NavBar />
+        <Routes>
 
-      <Routes>
+          <Route path='/' element={<ItemListContainer />} />
+          <Route path='/item/:itemId' element={<ItemDetailContainer />} />
+          <Route path='/productos/:categoryId' element={<ItemListContainer />} />
+          <Route path='/productos/:categoryId' element={<ItemListContainer />} />
+          <Route path='/productos/:categoryId' element={<ItemListContainer />} />
+          <Route path='*' element={<Navigate to="/" />} />
 
-        <Route path='/' element={<ItemListContainer />} />
-        <Route path='/item/:itemId' element={<ItemDetailContainer />} />
-        <Route path='/productos/:categoryId' element={<ItemListContainer />} />
-        <Route path='/productos/:categoryId' element={<ItemListContainer />} />
-        <Route path='/productos/:categoryId' element={<ItemListContainer />} />
-        <Route path='*' element={<Navigate to="/" />} />
+        </Routes>
 
-      </Routes>
-
-    </BrowserRouter>
-
+      </BrowserRouter>
   );
 }
 

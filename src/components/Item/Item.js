@@ -1,41 +1,46 @@
 import * as React from 'react';
 import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
-import Typography from '@mui/material/Typography';
-import ItemCount from '../../components/ItemCount/ItemCount';
 import CardActions from '@mui/material/CardActions';
 import { Link } from 'react-router-dom';
+import { Button, CardHeader, Avatar } from '@mui/material';
+import { red } from '@mui/material/colors';
+import IconButton from '@mui/material/IconButton';
+
 
 const Item = ({ producto }) => {
 
     return (
         <div>
-            <Card sx={{ maxWidth: 345 }} elevation={5}>
+            <Card sx={{ maxWidth: 345, borderRadius: 4, paddingBottom: 1 }} elevation={5}>
+                <CardHeader
+                    avatar={
+                        <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
+                            NS
+                        </Avatar>
+                    }
+                    action={
+                        <IconButton aria-label="settings">
+                        </IconButton>
+                    }
+                    title={producto.nombre}
+                    subheader={`Stock: ${producto.stock} - Precio $ ${producto.precio} `}
+
+                />
                 <CardMedia
                     component="img"
                     height="auto"
                     image={producto.img}
-                    alt={producto.descripcion}
+                    alt={producto.nombre}
+
                 />
 
-                <CardContent>
-                    <Typography gutterBottom variant="h5" component="div">
-                        {producto.nombre}
-                    </Typography>
-                    <Typography variant="body2" color="text.secondary">
-                        <span>Precio $ {producto.precio}</span>
-                        <span>Descripción: {producto.desc}</span>
-                        <span>{producto.descripcion}</span>
-                        <span>Stock: {producto.stock}</span>
-                    </Typography>
-                    <CardActions>
-                        <Link to={`/item/${producto.id}`}>Ver más</Link>
-                        <ItemCount stock={producto.stock} />
-                    </CardActions>
-                </CardContent>
+                <CardActions sx={{ justifyContent: 'center' }}>
+                    <Button sx={{borderRadius: 2}} fullWidth size="small" variant="contained" component={Link} to={`/item/${producto.id}`}>Ver detalle del producto</Button>
+                </CardActions>
+
             </Card>
-        </div>
+        </div >
     )
 }
 

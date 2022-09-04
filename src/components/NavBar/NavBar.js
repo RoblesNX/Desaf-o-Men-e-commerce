@@ -95,7 +95,7 @@ const NavBar = () => {
     };
 
     return (
-        <AppBar position="fixed">
+        <AppBar position="fixed" sx={{ bgcolor: "green" }}>
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
                     <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
@@ -111,8 +111,9 @@ const NavBar = () => {
                             color: 'inherit',
                             textDecoration: 'none',
                         }}
+                        component={Link} to={`/`}
                     >
-                         <Link to='/'>NAIKY*LG</Link>
+                        NAIKY*LG
                     </Typography>
 
                     <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -145,13 +146,12 @@ const NavBar = () => {
                             }}
                         >
                             {pages.map((page, index) => (
-                                <MenuItem key={index} onClick={handleCloseNavMenu}>
-                                    <Link to={page.link}>{page.categoria}</Link>
+                                <MenuItem component={Link} to={page.link} key={index} onClick={handleCloseNavMenu}>
+                                    {page.categoria}
                                 </MenuItem>
                             ))}
                         </Menu>
                     </Box>
-                    <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
                     <Typography
                         variant="h5"
                         noWrap
@@ -165,29 +165,32 @@ const NavBar = () => {
                             color: 'inherit',
                             textDecoration: 'none',
                         }}
+                        component={Link} to={`/`}
+
                     >
-                        <Link to='/'>NAIKY*S</Link>
+                        NS
                     </Typography>
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                         {pages.map((page, index) => (
                             <Button
+                                component={Link}
+                                to={page.link}
                                 key={index}
                                 onClick={handleCloseNavMenu}
                                 sx={{ my: 2, color: 'white', display: 'block' }}
                             >
-                                <Link key={page.id} to={page.link}>
-                                    {page.categoria}
-                                </Link>
+                                {page.categoria}
+
                             </Button>
                         ))}
                     </Box>
 
-                    <Search>
+                    <Search sx={{ width: 125 }}>
                         <SearchIconWrapper>
                             <SearchIcon />
                         </SearchIconWrapper>
                         <StyledInputBase
-                            placeholder="Búsqueda…"
+                            placeholder="Buscar"
                             inputProps={{ 'aria-label': 'search' }}
                         />
                     </Search>

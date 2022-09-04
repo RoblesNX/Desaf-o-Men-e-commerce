@@ -20,10 +20,9 @@ const ItemCount = ({ stock }) => {
     return (
         <div>
             <Container />
-            <Button variant="contained" sx={{ padding: `5px` }} onClick={handleRestar}>-</Button>
+            <Button size="small" variant="contained" sx={{ padding: `5px` }} onClick={handleRestar}>-</Button>
             <span style={{ padding: 25 }} className='count-number'>{counter}</span>
-            <Button variant="contained" sx={{ padding: `5px` }} onClick={handleSumar}>+</Button>
-            <Button variant="contained"  >Agregar al carrito</Button>
+            <Button size="small" variant="contained" sx={{ padding: `5px` }} onClick={handleSumar}>+</Button>
             <Container />
 
         </div>
