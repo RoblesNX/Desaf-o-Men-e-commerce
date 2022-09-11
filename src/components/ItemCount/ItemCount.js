@@ -1,20 +1,20 @@
 import * as React from 'react';
-import { useState } from "react";
 import { Button, ButtonGroup } from '@mui/material';
 import { Container } from "@mui/system";
 
-const ItemCount = ({ stock }) => {
-    const [counter, setCounter] = useState(0);
-    const handleSumar = () => {
-        if (counter < stock) {
-            setCounter(counter + 1);
-        }
-    };
+const ItemCount = ({ max, counter, setCantidad, handleAgregar }) => { 
 
+    const handleSumar = () => {
+      if (counter < max) {
+        setCantidad(counter + 1);
+      }
+  
+    };
+  
     const handleRestar = () => {
-        if (counter > 0) {
-            setCounter(counter - 1);
-        }
+      if (counter > 1) {
+        setCantidad(counter - 1);
+      }
     };
 
     return (
@@ -24,7 +24,7 @@ const ItemCount = ({ stock }) => {
                 <Button variant="outlined" sx={{ px: 3 }}>{counter}</Button>
                 <Button sx={{ px: 3 }} onClick={handleSumar}>+</Button>
             </ButtonGroup>
-            <Button color="warning" size="small" variant="contained" sx={{ px: 2, py: 1 }}>Agregar al carrito</Button>
+            <Button color="warning" size="small" variant="contained" sx={{ px: 2, py: 1 }} onClick={handleAgregar}>Agregar al carrito</Button>
         </Container>
     );
 };
