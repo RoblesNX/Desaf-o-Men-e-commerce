@@ -19,12 +19,12 @@ const ItemCount = ({ max, counter, setCantidad, handleAgregar }) => {
 
     return (
         <Container sx={{ display: 'flex', flexFlow: 'column', alignItems: 'center' }}>
-            <ButtonGroup sx={{ my: 2 }}variant="contained" size='smaill' aria-label="outlined primary button group">
+            <ButtonGroup fullWidth variant="contained" aria-label="outlined primary button group" sx={{ my: 2 }} >
                 <Button sx={{ px: 3 }} onClick={handleRestar}>-</Button>
                 <Button variant="outlined" sx={{ px: 3 }}>{counter}</Button>
                 <Button sx={{ px: 3 }} onClick={handleSumar}>+</Button>
             </ButtonGroup>
-            <Button color="warning" size="small" variant="contained" sx={{ px: 2, py: 1 }} onClick={handleAgregar}>Agregar al carrito</Button>
+            <Button fullWidth color="warning" size="small" variant="contained" sx={{ px: 2, py: 1 }} onClick={handleAgregar}>Agregar al carrito</Button>
         </Container>
     );
 };
