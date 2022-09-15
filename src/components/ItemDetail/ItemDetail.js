@@ -5,36 +5,25 @@ import { Link } from 'react-router-dom';
 import { useCartContext } from '../../context/CartContext';
 import ItemCount from '../ItemCount/ItemCount';
 
-const ItemDetail = ({ item }) => {
+const ItemDetail = ({ item, handleAgregar}) => {
 
   const { addToCart, isInCart } = useCartContext()
 
   const [cantidad, setCantidad] = useState(1)
 
-  const handleAgregar = () => {
-    const itemToCart = {
-      id: item.id,
-      nombre: item.nombre,
-      precio: item.precio,
-      img: item.img,
-      cantidad
-    }
-    addToCart(itemToCart)
-  }
-
   return (
-    <Card sx={{padding: 5, borderRadius: 3}}>
+    <Card sx={{ padding: 5, borderRadius: 3 }}>
 
       <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-around' }}>
 
-        <CardMedia component='img' image={item.img} alt={item.nombre} sx={{maxWidth: '500px'}} />
+        <CardMedia component='img' image={item.img} alt={item.nombre} sx={{ maxWidth: '500px' }} />
 
-        <Box sx={{padding: 5, borderRadius: 3, border: 1, borderColor: '#ebebeb'}}>
+        <Box sx={{ padding: 5, borderRadius: 3, border: 1, borderColor: '#ebebeb' }}>
 
           <CardContent>
             <Typography variant='h5'>{item.nombre}</Typography>
-            <Typography variant='h6' sx={{textTransform: 'capitalize', color: '#008012', marginTop: 1}}>Categoría: {item.categoria}</Typography>
-            <Typography sx={{fontSize: '36px', marginTop: 2}}>$ {item.precio}</Typography>
+            <Typography variant='h6' sx={{ textTransform: 'capitalize', color: '#008012', marginTop: 1 }}>Categoría: {item.categoria}</Typography>
+            <Typography sx={{ fontSize: '36px', marginTop: 2 }}>$ {item.precio}</Typography>
           </CardContent>
 
           <CardActions>
@@ -44,7 +33,9 @@ const ItemDetail = ({ item }) => {
                 max={item.stock}
                 counter={cantidad}
                 setCantidad={setCantidad}
-                handleAgregar={handleAgregar} />
+                handleAgregar={handleAgregar}
+                addToCart={addToCart}
+                item={item} />
             }
           </CardActions>
 
@@ -53,9 +44,9 @@ const ItemDetail = ({ item }) => {
       </Box>
 
 
-      <Typography variant='h5' color={'#000000'} sx={{ padding: 2, paddingLeft: 0}}>
-          Características principales:
-        </Typography>
+      <Typography variant='h5' color={'#000000'} sx={{ padding: 2, paddingLeft: 0 }}>
+        Características principales:
+      </Typography>
 
       <Box sx={{ borderRadius: '15px', overflow: 'hidden' }}>
 
@@ -78,12 +69,12 @@ const ItemDetail = ({ item }) => {
         <Grid container>
           <Grid item lg={2} md={2} xs={2} sx={{ background: '#ebebeb', padding: 2 }}>
             <Typography variant='body1'>
-Categoría
+              Categoría
             </Typography>
           </Grid>
 
           <Grid item lg={10} md={10} xs={10} sx={{ background: '#f5f5f5', padding: 2 }}>
-            <Typography variant='body1' sx={{textTransform: 'capitalize'}}>
+            <Typography variant='body1' sx={{ textTransform: 'capitalize' }}>
               {item.categoria}
             </Typography>
           </Grid>
@@ -91,13 +82,13 @@ Categoría
 
       </Box>
 
-      <Typography variant='h5' color={'#000000'} sx={{ padding: 2, paddingLeft: 0, marginTop: 2}}>
-          Descripción:
-        </Typography>
+      <Typography variant='h5' color={'#000000'} sx={{ padding: 2, paddingLeft: 0, marginTop: 2 }}>
+        Descripción:
+      </Typography>
 
-        <Typography color={'#000000'} sx={{ paddingLeft: 0, fontSize: '18px'}}>
+      <Typography color={'#000000'} sx={{ paddingLeft: 0, fontSize: '18px' }}>
         {item.desc}:
-        </Typography>
+      </Typography>
 
 
     </Card>
