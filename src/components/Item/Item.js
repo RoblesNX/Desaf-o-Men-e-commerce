@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
-import { Button, CardHeader, Avatar, Card, CardMedia, CardActions } from '@mui/material';
+import { Button, CardHeader, Avatar, Card, CardMedia, CardActions, IconButton, Typography } from '@mui/material';
 import { red } from '@mui/material/colors';
-import IconButton from '@mui/material/IconButton';
+import { Box } from '@mui/system';
 
 
 const Item = ({ producto }) => {
@@ -21,19 +21,25 @@ const Item = ({ producto }) => {
                         </IconButton>
                     }
                     title={producto.nombre}
-                    subheader={`Stock: ${producto.stock} - Precio $ ${producto.precio} `}
-
                 />
+
+                <Box sx={{display: 'flex', justifyContent:'space-evenly' }}>
+                    {producto.stock > 0
+                        ? <Typography variant="body1" component='p'>Stock: {producto.stock} </Typography>
+                        : <Typography variant="body1" component='p' color="text.secondary"> Sin stock</Typography>}
+                    <Typography variant="body1" component='p' >Precio $ {producto.precio} </Typography>
+                </Box>
+
+
                 <CardMedia
                     component="img"
                     height="auto"
                     image={producto.img}
                     alt={producto.nombre}
-
                 />
 
                 <CardActions>
-                    <Button sx={{borderRadius: 2}} fullWidth size="small" variant="contained" component={Link} to={`/item/${producto.id}`}>Ver detalle del producto</Button>
+                    <Button sx={{ borderRadius: 2 }} fullWidth size="small" variant="contained" component={Link} to={`/item/${producto.id}`}>Ver detalle del producto</Button>
                 </CardActions>
 
             </Card>

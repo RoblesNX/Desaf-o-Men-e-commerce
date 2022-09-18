@@ -1,36 +1,7 @@
 import React from 'react';
-import { Button, Box, Typography, Grid, Divider, Card, CardMedia, CardContent, CardActions } from '@mui/material';
-import { Link } from 'react-router-dom';
-import { useCartContext } from '../../context/CartContext';
-import ItemCount from '../ItemCount/ItemCount';
-import { useState } from "react";
-import OutOfStock from '../OutOfStock/OutOfStock';
+import { Box, Typography, Grid, Divider, Card, CardMedia, CardContent } from '@mui/material';
 
-const ItemDetail = ({ item }) => {
-
-  const { addToCart, isInCart } = useCartContext()
-
-  const [cantidad, setCantidad] = useState(0)
-
-  const handleAgregar = () => {
-    const itemToCart = {
-      id: item.id,
-      nombre: item.nombre,
-      precio: item.precio,
-      img: item.img,
-      cantidad
-    }
-    addToCart(itemToCart)
-  }
-
-  if(item.stock === 0) {
-    return (
-
-      <OutOfStock item={item}/>
-      
-    )
-  }
-
+const OutOfStock = ({ item }) => {
   return (
     <Card sx={{ padding: 5, borderRadius: 3 }}>
 
@@ -46,18 +17,13 @@ const ItemDetail = ({ item }) => {
             <Typography sx={{ fontSize: '36px', marginTop: 2 }}>$ {item.precio}</Typography>
           </CardContent>
 
-          <CardActions>
-            {isInCart(item.id)
-              ? <Button fullWidth variant="contained" component={Link} to='/cart'>Terminar mi compra</Button>
-              : <ItemCount
-                max={item.stock}
-                counter={cantidad}
-                setCantidad={setCantidad}
-                handleAgregar={handleAgregar}
-              />
-            }
-          </CardActions>
-
+          <Grid container sx={{textAlign:'center'}}>
+            <Grid item lg={5} md={5} xs={5} sx={{ background: '#ebebeb', padding: 2, borderRadius: '15px', overflow: 'hidden' }}>
+              <Typography variant='body1'>
+                SIN STOCK
+              </Typography>
+            </Grid>
+          </Grid>
         </Box>
 
       </Box>
@@ -113,4 +79,4 @@ const ItemDetail = ({ item }) => {
   )
 }
 
-export default ItemDetail
+export default OutOfStock

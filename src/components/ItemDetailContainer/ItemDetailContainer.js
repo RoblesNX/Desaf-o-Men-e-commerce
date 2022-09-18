@@ -4,6 +4,7 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Container } from '@mui/material';
+import Loader from '../Loader/Loader'
 
 const ItemDetailContainer = () => {
 
@@ -27,7 +28,7 @@ const ItemDetailContainer = () => {
 
     return (
         <Container sx={{marginTop: 15}}>
-            {loading ? <h2>Cargando...</h2> : <ItemDetail item={item} />}
+            {loading ? <Loader/> : <ItemDetail item={item} />}
         </Container>
     )
 }
