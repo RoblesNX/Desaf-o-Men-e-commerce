@@ -17,8 +17,6 @@ const ItemCount = ({ max, counter, handleAgregar, setCantidad }) => {
     }
   };
 
-
-
   return (
     <Container sx={{ display: 'flex', flexFlow: 'column', alignItems: 'center' }}>
       <ButtonGroup fullWidth variant="contained" aria-label="outlined primary button group" sx={{ my: 2 }} >

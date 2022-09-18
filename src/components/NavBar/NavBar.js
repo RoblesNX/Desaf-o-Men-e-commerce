@@ -14,7 +14,6 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
 import CartWidget from './CartWidget.js';
 import { Link } from 'react-router-dom';
 
@@ -98,24 +97,21 @@ const NavBar = () => {
         <AppBar position="fixed" sx={{ bgcolor: "green" }}>
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
-                    <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
-                    <Typography
-                        variant="h6"
-                        noWrap
+                <Box sx={{marginRight: 10}}>
+                
+                    <Box component={Link} to={`/`}>
+                    <Box
+                        component="img"
                         sx={{
-                            mr: 2,
-                            display: { xs: 'none', md: 'flex' },
-                            fontFamily: 'monospace',
-                            fontWeight: 700,
-                            letterSpacing: '.3rem',
-                            color: 'inherit',
-                            textDecoration: 'none',
+                            height: 64,
+                            PaddingRight: 10
                         }}
-                        component={Link} to={`/`}
-                    >
-                        NAIKY*LG
-                    </Typography>
-
+                        alt="Naiky Store."
+                        src={"https://i.ibb.co/2q8JdKg/Logo-tienda-de-ropa-moderno-moda-urbana-negro-verde-blanco-removebg-preview.png"}
+                        to='/'
+                    />
+                    </Box>
+                    </Box>
                     <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
                         <IconButton
                             size="large"
@@ -141,7 +137,7 @@ const NavBar = () => {
                             }}
                             open={Boolean(anchorElNav)}
                             onClose={handleCloseNavMenu}
-                            sx={{
+                            sx={{ 
                                 display: { xs: 'block', md: 'none' },
                             }}
                         >
@@ -152,24 +148,7 @@ const NavBar = () => {
                             ))}
                         </Menu>
                     </Box>
-                    <Typography
-                        variant="h5"
-                        noWrap
-                        sx={{
-                            mr: 2,
-                            display: { xs: 'flex', md: 'none' },
-                            flexGrow: 1,
-                            fontFamily: 'monospace',
-                            fontWeight: 700,
-                            letterSpacing: '.3rem',
-                            color: 'inherit',
-                            textDecoration: 'none',
-                        }}
-                        component={Link} to={`/`}
-
-                    >
-                        NS
-                    </Typography>
+                   
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                         {pages.map((page, index) => (
                             <Button

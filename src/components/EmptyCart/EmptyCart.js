@@ -1,4 +1,4 @@
-import { Box } from '@mui/system'
+import { Container } from '@mui/system'
 import React from 'react'
 import Typography from '@mui/material/Typography'
 import { Button, Divider } from '@mui/material'
@@ -6,12 +6,19 @@ import { Link } from 'react-router-dom'
 
 const EmptyCart = () => {
     return (
-        <Box>
-            <Typography sx={{ marginTop: 15, marginBottom: 3 }} variant="h2" component='h3' align='center'>Tu carrito está vacío</Typography>
-            <Divider sx={{ marginRight: 10, marginLeft: 10 }}/>
-            <Box sx={{display: 'flex', justifyContent: 'center', margin: 3 }} > <Button variant='contained' component={Link} to='/'>Ir a comprar</Button>
-            </Box>
-        </Box>
+        <Container sx={{ marginTop: 10, padding: 10, display: 'flex', flexFlow: 'column', justifyContent: 'center' }}>
+            <Typography variant="h3" sx={{ padding: 2 }}>
+                No tiene productos en su carrito.
+            </Typography>
+            <Typography variant="h5" sx={{ padding: 2 }}>
+                Agregue productos para continuar.
+            </Typography>
+            <Divider sx={{ margin: 5 }} />
+
+            <Button variant='contained' component={Link} to='/'>
+                Ir a comprar
+            </Button>
+        </Container>
     )
 }
 

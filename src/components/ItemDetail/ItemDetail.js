@@ -36,7 +36,7 @@ const ItemDetail = ({ item }) => {
 
       <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-around' }}>
 
-        <CardMedia component='img' image={item.img} alt={item.nombre} sx={{ maxWidth: '500px' }} />
+        <CardMedia component='img' image={item.img} alt={item.nombre} sx={{ maxWidth: '400px' }} />
 
         <Box sx={{ padding: 5, borderRadius: 3, border: 1, borderColor: '#ebebeb' }}>
 
@@ -62,20 +62,20 @@ const ItemDetail = ({ item }) => {
 
       </Box>
 
-      <Typography variant='h5' color={'#000000'} sx={{ padding: 2, paddingLeft: 0 }}>
+      <Typography variant='h6' color={'#000000'} sx={{ padding: 2, paddingLeft: 0 }}>
         Características principales:
       </Typography>
 
       <Box sx={{ borderRadius: '15px', overflow: 'hidden' }}>
 
         <Grid container>
-          <Grid item lg={2} md={2} xs={2} sx={{ background: '#ebebeb', padding: 2 }}>
+          <Grid item lg={2} md={2} xs={4} sx={{ background: '#ebebeb', padding: 2 }}>
             <Typography variant='body1'>
               Marca
             </Typography>
           </Grid>
 
-          <Grid item lg={10} md={10} xs={10} sx={{ background: '#f5f5f5', padding: 2 }}>
+          <Grid item lg={10} md={10} xs={8} sx={{ background: '#f5f5f5', padding: 2 }}>
             <Typography variant='body1'>
               {item.marca}
             </Typography>
@@ -85,13 +85,13 @@ const ItemDetail = ({ item }) => {
         <Divider />
 
         <Grid container>
-          <Grid item lg={2} md={2} xs={2} sx={{ background: '#ebebeb', padding: 2 }}>
+          <Grid item lg={2} md={2} xs={4} sx={{ background: '#ebebeb', padding: 2 }}>
             <Typography variant='body1'>
               Categoría
             </Typography>
           </Grid>
 
-          <Grid item lg={10} md={10} xs={10} sx={{ background: '#f5f5f5', padding: 2 }}>
+          <Grid item lg={10} md={10} xs={8} sx={{ background: '#f5f5f5', padding: 2 }}>
             <Typography variant='body1' sx={{ textTransform: 'capitalize' }}>
               {item.categoria}
             </Typography>
@@ -100,7 +100,7 @@ const ItemDetail = ({ item }) => {
 
       </Box>
 
-      <Typography variant='h5' color={'#000000'} sx={{ padding: 2, paddingLeft: 0, marginTop: 2 }}>
+      <Typography variant='h6' color={'#000000'} sx={{ padding: 2, paddingLeft: 0, marginTop: 2 }}>
         Descripción:
       </Typography>
 
