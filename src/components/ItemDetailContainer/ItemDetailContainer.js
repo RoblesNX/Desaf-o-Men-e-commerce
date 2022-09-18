@@ -1,10 +1,11 @@
 import ItemDetail from '../ItemDetail/ItemDetail';
-import getData from '../../helpers/getData'
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Container } from '@mui/material';
 import Loader from '../Loader/Loader'
+import { doc, getDoc } from "firebase/firestore"
+import { db } from "../../firebase/config"
 
 const ItemDetailContainer = () => {
 
@@ -16,15 +17,17 @@ const ItemDetailContainer = () => {
 
         setLoading(true)
 
-        getData()
-            .then((res) => {
-                setItem(res.find((prod) => prod.id === Number(itemId)))
-            })
-            .catch((err) => { console.log(err) })
-            .finally(() => {
-                setLoading(false)
-            })
-    }, [itemId])
+        const docRef = doc(db, 'productos', itemId)
+        getDoc(docRef)
+        .then((doc) => {
+            setItem({id: doc.id, ...doc.data()})
+        })
+        
+        .finally(() => {
+            setLoading(false)
+        })
+
+        }, [itemId])
 
     return (
         <Container sx={{marginTop: 15}}>
