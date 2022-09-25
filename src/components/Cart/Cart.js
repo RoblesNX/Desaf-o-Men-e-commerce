@@ -1,11 +1,11 @@
-import { Button, Typography, Divider } from '@mui/material'
+import { Button, Typography, Divider, ButtonGroup } from '@mui/material'
 import { Container, Box } from '@mui/system'
 import { useCartContext } from '../../context/CartContext'
 import DeleteIcon from '@mui/icons-material/Delete';
 import EmptyCart from '../EmptyCart/EmptyCart';
+import { Link } from 'react-router-dom';
 
 const Cart = () => {
-
 
     const { cart, cartTotal, emptyCart, removeItem } = useCartContext()
 
@@ -14,7 +14,6 @@ const Cart = () => {
             <EmptyCart />
         )
     }
-
 
     return (
         <Container sx={{ marginTop: 10, padding: 10, display: 'flex', flexFlow: 'column', justifyContent: 'center' }}>
@@ -33,6 +32,12 @@ const Cart = () => {
                         <Button sx={{ margin: 1 }} variant='contained' onClick={() => removeItem(item.id)}>
                             <DeleteIcon />
                         </Button>
+
+                        <ButtonGroup variant="contained" aria-label="outlined primary button group" sx={{ my: 2 }} >
+                            <Button sx={{ px: 3 }}>-</Button>
+                            <Button variant="outlined" sx={{ px: 3 }}> </Button>
+                            <Button sx={{ px: 3 }}>+</Button>
+                        </ButtonGroup>
                     </Box>
                     <Divider />
                 </Container>
@@ -41,9 +46,15 @@ const Cart = () => {
             <Typography sx={{ padding: 2, textAlign: 'right' }} variant="h4">
                 Total con envío ${cartTotal()}
             </Typography>
+
+            <Button sx={{ marginBottom: 2}} variant='contained' component={Link} to="/checkout">
+                Finalizar compra
+            </Button>
+
             <Button variant='contained' onClick={emptyCart}>
                 Vaciar carrito
             </Button>
+            
 
         </Container>
     )
