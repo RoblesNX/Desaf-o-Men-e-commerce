@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 
 const Cart = () => {
 
-    const { cart, cartTotal, emptyCart, removeItem } = useCartContext()
+    const { cart, cartTotal, emptyCart, removeItem, increaseQuantityInCart, decreaseQuantityInCart} = useCartContext()
 
     if (cart.length === 0) {
         return (
@@ -28,15 +28,15 @@ const Cart = () => {
                         <Box sx={{ width: "10%", padding: 2 }} component='img' src={item.img} alt={item.name} />
                         <Typography sx={{ padding: 2, textAlign: 'left' }} variant="h6">{item.nombre} </Typography>
                         <Typography sx={{ padding: 2 }} variant="h6">${item.precio} </Typography>
-                        <Typography sx={{ padding: 2 }} variant="h6">Cantidad: {item.cantidad}</Typography>
                         <Button sx={{ margin: 1 }} variant='contained' onClick={() => removeItem(item.id)}>
                             <DeleteIcon />
                         </Button>
 
                         <ButtonGroup variant="contained" aria-label="outlined primary button group" sx={{ my: 2 }} >
-                            <Button sx={{ px: 3 }}>-</Button>
-                            <Button variant="outlined" sx={{ px: 3 }}> </Button>
-                            <Button sx={{ px: 3 }}>+</Button>
+                            <Button onClick={ () => decreaseQuantityInCart(item)} sx={{ px: 3 }}>-</Button>
+                            <Button variant="outlined" sx={{ px: 3 }}>{item.cantidad}</Button>
+                            <Button onClick={ () => increaseQuantityInCart (item)} sx={{ px: 3 }}>+</Button>
+
                         </ButtonGroup>
                     </Box>
                     <Divider />

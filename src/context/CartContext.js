@@ -16,6 +16,38 @@ export const CartProvider = ({ children }) => {
         return cart.some((item) => item.id === id)
     }
 
+    // FUNCIÓN PARA INCREMENTAR UNIDADES EN EL CARRITO
+
+    const increaseQuantityInCart = (item) => {
+        const inCart = cart.find((productInCart) => productInCart.id === item.id);
+        if (item.stock > inCart.cantidad) {
+            if (inCart) {
+                setCart(
+                    cart.map((productInCart) => {
+                        if (productInCart.id === item.id) {
+                            return { ...inCart, cantidad: inCart.cantidad + 1 };
+                        } else return productInCart;
+                    })
+                );
+            }
+        }
+    };
+
+    // FUNCION PARA REDUCIR CANTIDADES EN EL CARRITO
+
+    const decreaseQuantityInCart = (item) => {
+        const inCart = cart.find((productInCart) => productInCart.id === item.id);
+        if (inCart.cantidad > 1) {
+            setCart(
+                cart.map((productInCart) => {
+                    if (productInCart.id === item.id) {
+                        return { ...inCart, cantidad: inCart.cantidad - 1 };
+                    } else return productInCart;
+                })
+            );
+        }
+    };
+
     const cartQuantity = () => {
         return cart.reduce((acc, item) => acc + item.cantidad, 0)
     }
@@ -49,7 +81,9 @@ export const CartProvider = ({ children }) => {
             cartTotal,
             emptyCart,
             removeItem,
-            finishOrder
+            finishOrder,
+            increaseQuantityInCart,
+            decreaseQuantityInCart
         }}>
             {children}
         </CartContext.Provider>)
