@@ -51,7 +51,7 @@ const Login = () => {
 
   return (
 
-    <div className="w-full max-w-xs m-auto">
+    <div>
 
     <Typography variant="h5" sx={{marginTop: 20}}> Login </Typography>
 
@@ -59,12 +59,11 @@ const Login = () => {
 
       <form
         onSubmit={handleSubmit}
-        className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
+        
       >
-        <div className="mb-4">
+        <div>
           <label
             htmlFor="email"
-            className="block text-gray-700 text-sm font-bold mb-2"
           >
             Email
           </label>
@@ -73,14 +72,12 @@ const Login = () => {
             name="email"
             id="email"
             onChange={handleChange}
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             placeholder="youremail@company.tld"
           />
         </div>
-        <div className="mb-4">
+        <div>
           <label
             htmlFor="password"
-            className="block text-gray-700 text-sm font-bold mb-2"
           >
             Password
           </label>
@@ -89,20 +86,17 @@ const Login = () => {
             name="password"
             id="password"
             onChange={handleChange}
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             placeholder="*************"
           />
         </div>
 
-        <div className="flex items-center justify-between">
+        <div>
           <button
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
             type="submit"
           >
             Sign In
           </button>
           <a
-            className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
             href="#!"
             onClick={handleResetPassword}
           >
@@ -112,13 +106,13 @@ const Login = () => {
       </form>
       <button
         onClick={handleGoogleSignin}
-        className="bg-slate-50 hover:bg-slate-200 text-black  shadow rounded border-2 border-gray-300 py-2 px-4 w-full"
+        
       >
         Google login
       </button>
-      <p className="my-4 text-sm flex justify-between px-3">
+      <p >
         Don't have an account?
-        <Link to="/register" className="text-blue-700 hover:text-blue-900">
+        <Link to="/register" >
           Register
         </Link>
       </p>
