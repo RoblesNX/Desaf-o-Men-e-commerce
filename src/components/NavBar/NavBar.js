@@ -5,7 +5,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import CartWidget from './CartWidget.js';
 import { Link } from 'react-router-dom';
 import { useAuth } from "../../context/AuthContext";
-import { InputBase, Typography, AppBar, Box, Toolbar, IconButton, Menu, Container, Button,  MenuItem } from '@mui/material'
+import { InputBase, Typography, AppBar, Box, Toolbar, IconButton, Menu, Container, Button, MenuItem } from '@mui/material'
 
 const pages = [
 
@@ -77,7 +77,6 @@ const NavBar = () => {
 
     const { logout, user } = useAuth();
 
-    console.log(user);
     const handleLogout = async () => {
         try {
             await logout();
@@ -174,7 +173,27 @@ const NavBar = () => {
 
                     <Box sx={{ flexGrow: 0 }}>
 
-                        {!user ?
+                        {user ?
+
+                            <Box>
+                                <Button
+                                    component={Link}
+                                    to="/micuenta"
+                                    variant="contained"
+                                    sx={{ p: 0 }}>
+                                    <Typography textAlign="center" sx={{ my: 1, mx: 2, color: 'white' }}> Mi cuenta </Typography>
+                                </Button>
+
+                                <Button
+                                    onClick={handleLogout}
+                                    variant="contained"
+                                    sx={{ p: 0, marginLeft: 2 }}>
+                                    Cerrar sesión
+                                </Button>
+
+                            </Box>
+
+                            :
 
                             <Box>
 
@@ -197,25 +216,9 @@ const NavBar = () => {
 
                             </Box>
 
-                            :
 
-                            <Box>
-                                <Button 
-                                component={Link}
-                                    to="/micuenta"
-                                    variant="contained" 
-                                    sx={{ p: 0 }}>
-                                    <Typography textAlign="center" sx={{ my: 1, mx: 2, color: 'white' }}> Mi cuenta </Typography>
-                                </Button>
 
-                                <Button 
-                                onClick={handleLogout} 
-                                variant="contained" 
-                                sx={{ p: 0, marginLeft: 2 }}>
-                                    <Typography textAlign="center" sx={{ my: 1, mx: 2, color: 'white' }}> Cerrar sesión </Typography>
-                                </Button>
 
-                            </Box>
 
                         }
 
