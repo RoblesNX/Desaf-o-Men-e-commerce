@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 
 const Cart = () => {
 
-    const { cart, cartTotal, emptyCart, removeItem, increaseQuantityInCart, decreaseQuantityInCart} = useCartContext()
+    const { cart, cartTotal, emptyCart, removeItem, increaseQuantityInCart, decreaseQuantityInCart } = useCartContext()
 
     if (cart.length === 0) {
         return (
@@ -33,10 +33,9 @@ const Cart = () => {
                         </Button>
 
                         <ButtonGroup variant="contained" aria-label="outlined primary button group" sx={{ my: 2 }} >
-                            <Button onClick={ () => decreaseQuantityInCart(item)} sx={{ px: 3 }}>-</Button>
+                            <Button onClick={() => decreaseQuantityInCart(item)} disabled={item.cantidad === 1} sx={{ px: 3 }}>-</Button>
                             <Button variant="outlined" sx={{ px: 3 }}>{item.cantidad}</Button>
-                            <Button onClick={ () => increaseQuantityInCart (item)} sx={{ px: 3 }}>+</Button>
-
+                            <Button onClick={() => increaseQuantityInCart(item)} sx={{ px: 3 }}>+</Button>
                         </ButtonGroup>
                     </Box>
                     <Divider />
@@ -47,14 +46,14 @@ const Cart = () => {
                 Total con envío ${cartTotal()}
             </Typography>
 
-            <Button sx={{ marginBottom: 2}} variant='contained' component={Link} to="/checkout">
+            <Button sx={{ marginBottom: 2 }} variant='contained' component={Link} to="/checkout">
                 Finalizar compra
             </Button>
 
             <Button variant='contained' onClick={emptyCart}>
                 Vaciar carrito
             </Button>
-            
+
 
         </Container>
     )

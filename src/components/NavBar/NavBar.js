@@ -1,23 +1,12 @@
 import * as React from 'react';
 import { styled, alpha } from '@mui/material/styles';
-import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
-import Container from '@mui/material/Container';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
-import MenuItem from '@mui/material/MenuItem';
 import CartWidget from './CartWidget.js';
 import { Link } from 'react-router-dom';
+import { useAuth } from "../../context/AuthContext";
+import { InputBase, Typography, AppBar, Box, Toolbar, IconButton, Menu, Container, Button,  MenuItem } from '@mui/material'
 
-const settings = ['Mi perfil', 'Mis pedidos', 'Mis datos de entrega', 'Cerrar sesión'];
 const pages = [
 
     {
@@ -75,42 +64,47 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 const NavBar = () => {
+
     const [anchorElNav, setAnchorElNav] = React.useState(null);
-    const [anchorElUser, setAnchorElUser] = React.useState(null);
 
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
-    };
-    const handleOpenUserMenu = (event) => {
-        setAnchorElUser(event.currentTarget);
     };
 
     const handleCloseNavMenu = () => {
         setAnchorElNav(null);
     };
 
-    const handleCloseUserMenu = () => {
-        setAnchorElUser(null);
+    const { logout, user } = useAuth();
+
+    console.log(user);
+    const handleLogout = async () => {
+        try {
+            await logout();
+        } catch (error) {
+            console.error(error.message);
+        }
     };
+
 
     return (
         <AppBar position="fixed" sx={{ bgcolor: "green" }}>
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
-                <Box sx={{marginRight: 10}}>
-                
-                    <Box component={Link} to={`/`}>
-                    <Box
-                        component="img"
-                        sx={{
-                            height: 64,
-                            PaddingRight: 10
-                        }}
-                        alt="Naiky Store."
-                        src={"https://i.ibb.co/2q8JdKg/Logo-tienda-de-ropa-moderno-moda-urbana-negro-verde-blanco-removebg-preview.png"}
-                        to='/'
-                    />
-                    </Box>
+                    <Box sx={{ marginRight: 10 }}>
+
+                        <Box component={Link} to={`/`}>
+                            <Box
+                                component="img"
+                                sx={{
+                                    height: 64,
+                                    PaddingRight: 10
+                                }}
+                                alt="Naiky Store."
+                                src={"https://i.ibb.co/2q8JdKg/Logo-tienda-de-ropa-moderno-moda-urbana-negro-verde-blanco-removebg-preview.png"}
+                                to='/'
+                            />
+                        </Box>
                     </Box>
                     <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
                         <IconButton
@@ -137,7 +131,7 @@ const NavBar = () => {
                             }}
                             open={Boolean(anchorElNav)}
                             onClose={handleCloseNavMenu}
-                            sx={{ 
+                            sx={{
                                 display: { xs: 'block', md: 'none' },
                             }}
                         >
@@ -148,7 +142,7 @@ const NavBar = () => {
                             ))}
                         </Menu>
                     </Box>
-                   
+
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                         {pages.map((page, index) => (
                             <Button
@@ -177,35 +171,57 @@ const NavBar = () => {
 
                     <CartWidget />
 
+
                     <Box sx={{ flexGrow: 0 }}>
-                        <Tooltip title="Configuración">
-                            <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-                            </IconButton>
-                        </Tooltip>
-                        <Menu
-                            sx={{ mt: '45px' }}
-                            id="menu-appbar"
-                            anchorEl={anchorElUser}
-                            anchorOrigin={{
-                                vertical: 'top',
-                                horizontal: 'right',
-                            }}
-                            keepMounted
-                            transformOrigin={{
-                                vertical: 'top',
-                                horizontal: 'right',
-                            }}
-                            open={Boolean(anchorElUser)}
-                            onClose={handleCloseUserMenu}
-                        >
-                            {settings.map((setting) => (
-                                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                                    <Typography textAlign="center">{setting}</Typography>
-                                </MenuItem>
-                            ))}
-                        </Menu>
+
+                        {!user ?
+
+                            <Box>
+
+                                <Button
+                                    component={Link}
+                                    to="/login"
+                                    variant="contained"
+                                    sx={{ p: 0 }}
+                                >
+                                    <Typography textAlign="center" sx={{ my: 1, mx: 2, color: 'white' }}> Acceder </Typography>
+                                </Button>
+
+                                <Button
+                                    component={Link}
+                                    to="/register"
+                                    variant="contained"
+                                    sx={{ p: 0, marginLeft: 2 }}>
+                                    <Typography textAlign="center" sx={{ my: 1, mx: 2, color: 'white' }}> Registrate </Typography>
+                                </Button>
+
+                            </Box>
+
+                            :
+
+                            <Box>
+                                <Button 
+                                component={Link}
+                                    to="/micuenta"
+                                    variant="contained" 
+                                    sx={{ p: 0 }}>
+                                    <Typography textAlign="center" sx={{ my: 1, mx: 2, color: 'white' }}> Mi cuenta </Typography>
+                                </Button>
+
+                                <Button 
+                                onClick={handleLogout} 
+                                variant="contained" 
+                                sx={{ p: 0, marginLeft: 2 }}>
+                                    <Typography textAlign="center" sx={{ my: 1, mx: 2, color: 'white' }}> Cerrar sesión </Typography>
+                                </Button>
+
+                            </Box>
+
+                        }
+
                     </Box>
+
+
                 </Toolbar>
             </Container>
         </AppBar>
