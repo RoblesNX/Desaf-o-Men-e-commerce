@@ -1,34 +1,51 @@
-import React from 'react'
-import { useAuth} from "../context/AuthContext";
-import { BrowserRouter } from "react-router-dom"
-import PrivateRoute from "./PrivateRoute"
-import PublicRoute from "./PublicRoute"
-import NavBar from "../components/NavBar/NavBar"
-
+import PrivateRoutes from "./PrivateRoutes"
+import NavBar from '../components/NavBar/NavBar'
+import Login from '../components/Login/Login'
+import { Routes, Route, Navigate, BrowserRouter } from 'react-router-dom'
+import ItemListContainer from '../components/ItemListContainer/ItemListContainer';
+import ItemDetailContainer from '../components/ItemDetailContainer/ItemDetailContainer';
+import Cart from '../components/Cart/Cart';
+import Home from '../components/Home/Home'
+import Register from '../components/Register/Register'
+import OrdersContainer from '../components/OrdersContainer/OrdersContainer'
+import WishList from '../components/WishList/WishList'
+import Checkout from '../components/Checkout/Checkout'
+import SearchNavBar from '../components/NavBar/SearchNavBar'
 
 const AppRouter = () => {
-
-  const { user } = useAuth();
-
-  if (user === null) {
     
     return (
+        <BrowserRouter>
 
-      <BrowserRouter>
-        <NavBar />
-        <PublicRoute />
-      </BrowserRouter >
+            <NavBar />
+
+            <Routes>
+
+                <Route path='/login' element={<Login />} />
+                <Route path='/register' element={<Register />} />
+                <Route path='/' element={<Home />} />
+                <Route path='/productos/:categoryId' element={<ItemListContainer />} />
+                <Route path='/item/:itemId' element={<ItemDetailContainer />} />
+                <Route path='/cart' element={<Cart />} />
+                <Route path='*' element={<Navigate to="/login" />} />
+                <Route path='/search' element={<SearchNavBar />} />
+
+
+                
+                <Route element={<PrivateRoutes />}>
+                        <Route path='/ordenes' element={<OrdersContainer />} />
+                        <Route path='/wishlist' element={<WishList />} />
+                        <Route path='/checkout' element={<Checkout />} />
+                </Route>
+                
+            </Routes>
+
+
+
+        </BrowserRouter>
     )
-  }
-
-  return (
-
-      <BrowserRouter>
-        <NavBar />
-        <PrivateRoute />
-      </BrowserRouter > 
-    
-  )
 }
 
 export default AppRouter
+
+

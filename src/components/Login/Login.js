@@ -1,40 +1,30 @@
 import React from 'react'
-import { Typography } from '@mui/material'
-import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { useAuth } from "../../context/AuthContext";
+import { Formik, Field, Form } from 'formik'
+import * as Yup from 'yup'
+import { useAuthContext } from '../../context/AuthContext'
+import { useNavigate, Link } from "react-router-dom"
+import { TextField } from 'formik-mui'
+import { Button, Typography, Box, Grid } from '@mui/material'
+import { useState } from "react"
+import { Container } from '@mui/system'
+
 
 const Login = () => {
 
-  const [user, setUser] = useState({
-    email: "",
-    password: "",
-  });
-  const { login, loginWithGoogle, resetPassword } = useAuth();
+  const { login, loginWithGoogle, resetPassword } = useAuthContext();
+
+  const user = [{ email: '', password: '' }]
+
   const [error, setError] = useState("");
+
   const navigate = useNavigate();
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setError("");
-    try {
-      await login(user.email, user.password);
-      navigate("/");
-    } catch (error) {
-      setError(error.message);
-      console.log(error)
-    }
-  };
-
-  const handleChange = ({ target: { value, name } }) =>
-    setUser({ ...user, [name]: value });
 
   const handleGoogleSignin = async () => {
     try {
       await loginWithGoogle();
-      navigate("/");
+      navigate(-1);
     } catch (error) {
-      setError(error.message);
+      setError(error.message)
     }
   };
 
@@ -50,75 +40,84 @@ const Login = () => {
   };
 
   return (
+    <Formik
+      initialValues={{ email: '', password: '' }}
+      validationSchema={Yup.object({
+        email: Yup.string().email('Invalid email address').required('Required'),
+        // password: Yup.string()
+        //   .required('Please Enter your password')
+        //   .matches(
+        //     /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
+        //     "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and one special case Character"
+        //   )
+      })}
+      onSubmit={async (values, { setSubmitting }) => {
+        setError("");
+        try {
+          await login(values.email, values.password)
+          navigate(-1)
+        } catch (e) {
+          setSubmitting(false)
+          setError(error.message);
+        }
+      }}
+    >
+      {({ submitForm, isSubmitting }) => (
+        <Container sx={{ marginTop: 15 }}>
 
-    <div>
-
-    <Typography variant="h5" sx={{marginTop: 20}}> Login </Typography>
-
-      {error && <p>{error}</p>}
-
-      <form
-        onSubmit={handleSubmit}
+          <Typography variant="h4" component='h5'>Login</Typography>
+          <Box>
+            <Grid container my={4} rowSpacing={2} columnSpacing={1} >
+          <Form>
+          <Grid item md={12} >
+          {error && <Typography variant="body1" component='p'>{error}</Typography>}
+            <Field
+              component={TextField}
+              type="email"
+              name="email"
+              label="eMail"
+            />
+            <Field
+              component={TextField}
+              type="password"
+              name="password"
+              label="password"
+            />
+            </Grid>
+            <Grid  item md={12}>
+            <Button
+              variant="contained"
+              color="primary"
+              disabled={isSubmitting}
+              onClick={submitForm}
+            >
+              Submit
+            </Button>
+            <Button
+              variant="contained"
+              color="primary"
+              disabled={isSubmitting}
+              onClick={handleGoogleSignin}
+            >
+              Sign In With Google
+            </Button>
+            <Button
+              variant="contained"
+              color="primary"
+              disabled={isSubmitting}
+              onClick={handleResetPassword}
+            >
+              Reset password
+            </Button>
+            </Grid>
+            <Typography variant="body1" component={Link} to='/register'>Register</Typography>
+          </Form>
+          </Grid>
+          </Box>
         
-      >
-        <div>
-          <label
-            htmlFor="email"
-          >
-            Email
-          </label>
-          <input
-            type="email"
-            name="email"
-            id="email"
-            onChange={handleChange}
-            placeholder="youremail@company.tld"
-          />
-        </div>
-        <div>
-          <label
-            htmlFor="password"
-          >
-            Password
-          </label>
-          <input
-            type="password"
-            name="password"
-            id="password"
-            onChange={handleChange}
-            placeholder="*************"
-          />
-        </div>
-
-        <div>
-          <button
-            type="submit"
-          >
-            Sign In
-          </button>
-          <a
-            href="#!"
-            onClick={handleResetPassword}
-          >
-            Forgot Password?
-          </a>
-        </div>
-      </form>
-      <button
-        onClick={handleGoogleSignin}
-        
-      >
-        Google login
-      </button>
-      <p >
-        Don't have an account?
-        <Link to="/register" >
-          Register
-        </Link>
-      </p>
-    </div>
-
+        </Container>
+      )}
+    </Formik>
   )
 }
-
 export default Login

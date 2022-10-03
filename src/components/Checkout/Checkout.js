@@ -10,10 +10,12 @@ import { addDoc, collection, getDocs, writeBatch, query, where, documentId } fro
 import { db } from "../../firebase/config"
 import SuccessOrder from "../SuccessOrder/SuccessOrder"
 import Swal from 'sweetalert2'
+import { useAuthContext } from '../../context/AuthContext';
 
 const Checkout = () => {
 
     const { cart, cartTotal, finishOrder } = useCartContext()
+    const {user} = useAuthContext()
 
     const [orderId, setOrderId] = useState(null)
 
@@ -49,7 +51,8 @@ const Checkout = () => {
                 const orden = {
                     comprador: values,
                     items: cart,
-                    total: cartTotal()
+                    total: cartTotal(),
+                    iduser: user.uid,
                 }
 
                 const batch = writeBatch(db)

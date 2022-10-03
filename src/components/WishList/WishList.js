@@ -1,8 +1,9 @@
 import React from 'react'
+import { Box } from '@mui/material'
 
 const WishList = () => {
   return (
-    <div>WishList</div>
+    <Box sx={{marginTop: 20}}>WishList</Box>
   )
 }
 
