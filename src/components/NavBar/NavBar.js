@@ -186,6 +186,7 @@ const NavBar = () => {
 
                     <Search >
                         <form onSubmit={handleSubmit}>
+                            
                             <StyledInputBase
                                 placeholder="Buscar..."
                                 onChange={(e) => setSearch(e.target.value)}
@@ -193,6 +194,7 @@ const NavBar = () => {
                                 id="message"
                                 name="message"
                             />
+
                             <Button
 
                                 variant="contained"
@@ -201,6 +203,7 @@ const NavBar = () => {
                             >
                                 Buscar
                             </Button>
+
                         </form>
                     </Search>
 
@@ -247,14 +250,6 @@ const NavBar = () => {
                                     sx={{ p: 0, marginLeft: 2 }}
                                 >
                                     <Typography textAlign="center" sx={{ my: 1, mx: 2, color: 'white' }}> Acceder </Typography>
-                                </Button>
-
-                                <Button
-                                    component={Link}
-                                    to="/register"
-                                    variant="contained"
-                                    sx={{ p: 0, marginLeft: 2 }}>
-                                    <Typography textAlign="center" sx={{ my: 1, mx: 2, color: 'white' }}> Registrate </Typography>
                                 </Button>
 
                             </Box>
