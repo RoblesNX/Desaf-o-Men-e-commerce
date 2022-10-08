@@ -1,8 +1,29 @@
 import React from 'react';
 import { Box, Typography, Grid, Divider, Card, CardMedia, CardContent } from '@mui/material';
+import { useWishListContext } from '../../context/WishListContext'
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
+import { Container } from '@mui/system';
+import RelatedItems from '../RelatedItems/RelatedItems';
 
 const OutOfStock = ({ item }) => {
+
+  const { addToWishList, isInWishList } = useWishListContext()
+
+  const handleWishList = () => {
+    const itemToWishList = {
+      id: item.id,
+      nombre: item.nombre,
+      precio: item.precio,
+      img: item.img
+    }
+
+    addToWishList(itemToWishList)
+  }
+
   return (
+
+    <Container>
+
     <Card sx={{ padding: 5, borderRadius: 3 }}>
 
       <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-around' }}>
@@ -15,6 +36,12 @@ const OutOfStock = ({ item }) => {
             <Typography variant='h5'>{item.nombre}</Typography>
             <Typography variant='h6' sx={{ textTransform: 'capitalize', color: '#008012', marginTop: 1 }}>Categoría: {item.categoria}</Typography>
             <Typography sx={{ fontSize: '36px', marginTop: 2 }}>$ {item.precio}</Typography>
+
+            {isInWishList(item.id)
+              ? <Typography> Este producto ya esta en sus favoritos </Typography>
+              : <FavoriteBorderIcon onClick={handleWishList}/>
+            }
+
           </CardContent>
 
           <Grid container sx={{textAlign:'center'}}>
@@ -76,6 +103,10 @@ const OutOfStock = ({ item }) => {
 
 
     </Card>
+
+    <RelatedItems categoria={item.categoria}/>
+
+    </Container>
   )
 }
 

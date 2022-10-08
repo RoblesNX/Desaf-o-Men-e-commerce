@@ -5,10 +5,15 @@ import { useCartContext } from '../../context/CartContext';
 import ItemCount from '../ItemCount/ItemCount';
 import { useState } from "react";
 import OutOfStock from '../OutOfStock/OutOfStock';
+import { Container } from '@mui/system'
+import RelatedItems from '../RelatedItems/RelatedItems';
+import { useWishListContext } from '../../context/WishListContext'
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
 
 const ItemDetail = ({ item }) => {
 
   const { addToCart, isInCart } = useCartContext()
+  const { addToWishList, isInWishList } = useWishListContext()
 
   const [cantidad, setCantidad] = useState(0)
 
@@ -24,6 +29,18 @@ const ItemDetail = ({ item }) => {
     addToCart(itemToCart)
   }
 
+  const handleWishList = () => {
+    const itemToWishList = {
+      id: item.id,
+      nombre: item.nombre,
+      precio: item.precio,
+      img: item.img
+    }
+
+    addToWishList(itemToWishList)
+  }
+
+
   if(item.stock === 0) {
     return (
 
@@ -33,6 +50,9 @@ const ItemDetail = ({ item }) => {
   }
 
   return (
+
+    <Container>
+
     <Card sx={{ padding: 5, borderRadius: 3 }}>
 
       <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-around' }}>
@@ -45,6 +65,10 @@ const ItemDetail = ({ item }) => {
             <Typography variant='h5'>{item.nombre}</Typography>
             <Typography variant='h6' sx={{ textTransform: 'capitalize', color: '#008012', marginTop: 1 }}>Categoría: {item.categoria}</Typography>
             <Typography sx={{ fontSize: '36px', marginTop: 2 }}>$ {item.precio}</Typography>
+            {isInWishList(item.id)
+              ? <Typography> Este producto ya esta en sus favoritos </Typography>
+              : <FavoriteBorderIcon onClick={handleWishList}/>
+            }
           </CardContent>
 
           <CardActions>
@@ -111,6 +135,10 @@ const ItemDetail = ({ item }) => {
 
 
     </Card>
+
+    <RelatedItems categoria={item.categoria}/>
+
+    </Container>
   )
 }
 

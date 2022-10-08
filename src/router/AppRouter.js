@@ -10,9 +10,11 @@ import Register from '../components/Register/Register'
 import OrdersContainer from '../components/OrdersContainer/OrdersContainer'
 import WishList from '../components/WishList/WishList'
 import Checkout from '../components/Checkout/Checkout'
-import SearchNavBar from '../components/NavBar/SearchNavBar'
+import { useAuthContext } from '../context/AuthContext'
 
 const AppRouter = () => {
+
+    const { user } = useAuthContext()
     
     return (
         <BrowserRouter>
@@ -21,16 +23,13 @@ const AppRouter = () => {
 
             <Routes>
 
-                <Route path='/login' element={<Login />} />
-                <Route path='/register' element={<Register />} />
+                <Route path='/login' element={user ? <Navigate to="/" /> : <Login />} />
+                <Route path='/register' element={user ? <Navigate to="/" /> : <Register />} />
                 <Route path='/' element={<Home />} />
                 <Route path='/productos/:categoryId' element={<ItemListContainer />} />
                 <Route path='/item/:itemId' element={<ItemDetailContainer />} />
                 <Route path='/cart' element={<Cart />} />
                 <Route path='*' element={<Navigate to="/login" />} />
-                <Route path='/search' element={<SearchNavBar />} />
-
-
                 
                 <Route element={<PrivateRoutes />}>
                         <Route path='/ordenes' element={<OrdersContainer />} />

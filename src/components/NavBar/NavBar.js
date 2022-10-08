@@ -3,17 +3,26 @@ import MenuIcon from '@mui/icons-material/Menu';
 import CartWidget from './CartWidget.js';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuthContext } from "../../context/AuthContext";
-import { styled, alpha } from '@mui/material/styles';
-import InputBase from '@mui/material/InputBase';
 import { Typography, AppBar, Box, Toolbar, IconButton, Menu, Button, MenuItem } from '@mui/material'
-import { useState } from 'react';
 import { Container } from '@mui/system'
 
 const pages = [
 
     {
         categoria: 'Calzado',
-        link: "/productos/calzado"
+        link: "/productos/calzado",
+        submenu: [
+            {
+                titulo: 'nike',
+                link: "/nike"
+            },
+            {
+                titulo: 'puma',
+                link: "/puma"
+            },
+
+        ],
+
     },
     {
         categoria: 'Indumentaria',
@@ -25,52 +34,21 @@ const pages = [
     }
 ];
 
-const Search = styled('div')(({ theme }) => ({
-    position: 'relative',
-    borderRadius: theme.shape.borderRadius,
-    backgroundColor: alpha(theme.palette.common.white, 0.15),
-    '&:hover': {
-        backgroundColor: alpha(theme.palette.common.white, 0.25),
-    },
-    marginLeft: 0,
-    width: '100%',
-    [theme.breakpoints.up('sm')]: {
-        marginLeft: theme.spacing(1),
-        width: 'auto',
-    },
-}));
-
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
-    color: 'inherit',
-    '& .MuiInputBase-input': {
-        padding: theme.spacing(1, 1, 1, 0),
-        // vertical padding + font size from searchIcon
-        paddingLeft: `calc(1em)`,
-        transition: theme.transitions.create('width'),
-        width: '100%',
-        [theme.breakpoints.up('sm')]: {
-            width: '12ch',
-            '&:focus': {
-                width: '20ch',
-            },
-        },
-    },
-}));
-
 const NavBar = () => {
 
     const { logout, user } = useAuthContext();
+    const navigate = useNavigate()
 
     const handleLogout = async () => {
         try {
-            await logout();
+            await logout()
+            navigate("/")
         } catch (error) {
             console.error(error.message);
         }
     };
 
     const [anchorElNav, setAnchorElNav] = React.useState(null);
-
 
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
@@ -79,16 +57,6 @@ const NavBar = () => {
     const handleCloseNavMenu = () => {
         setAnchorElNav(null);
     };
-
-    // ACA TOMO EL DATO DE LA BARRA DE BÚSQUEDA PARA LLEVARLO AL SEARCHNAVBAR
-
-    const navigate = useNavigate()
-    const [search, setSearch] = useState("")
-
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        navigate(`/search?name=${search}`)
-    }
 
     return (
         <AppBar position="fixed" sx={{ bgcolor: "green" }}>
@@ -160,54 +128,6 @@ const NavBar = () => {
                             </Button>
                         ))}
                     </Box>
-
-
-                    {/* <Box>
-                        <form onSubmit={handleSubmit}>
-                            <input
-                                placeholder="Buscar..."
-                                onChange={(e) => setSearch(e.target.value)}
-                                value={search}
-                                id="message"
-                                name="message"
-                            />
-
-                            <Button
-
-                                variant="contained"
-                                color="warning"
-                                type="submit"
-                            >
-                                Buscar
-                            </Button>
-                        </form>
-
-                    </Box> */}
-
-                    <Search >
-                        <form onSubmit={handleSubmit}>
-                            
-                            <StyledInputBase
-                                placeholder="Buscar..."
-                                onChange={(e) => setSearch(e.target.value)}
-                                value={search}
-                                id="message"
-                                name="message"
-                            />
-
-                            <Button
-
-                                variant="contained"
-                                color="warning"
-                                type="submit"
-                            >
-                                Buscar
-                            </Button>
-
-                        </form>
-                    </Search>
-
-
 
                     <Box sx={{ flexGrow: 0 }}>
 

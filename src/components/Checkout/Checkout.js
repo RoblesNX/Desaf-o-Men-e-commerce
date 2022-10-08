@@ -39,9 +39,6 @@ const Checkout = () => {
                     .required('Requerido'),
                 direccion: Yup.string()
                     .required('Requerido'),
-                email: Yup.string()
-                    .email('eMail incorrecto')
-                    .required('Requerido'),
                 telefono: Yup.string()
                     .matches(phoneRegExp, 'Telefono incorrecto')
                     .required('Requerido'),
@@ -104,14 +101,18 @@ const Checkout = () => {
 
                     <Typography sx={{ margin: 4 }} variant="h3" component='h5'>Finaliza tu compra</Typography>
 
-                    <Box sx={{ display: 'flex', flexFlow: 'column wrap', margin: 2 }}>
-                        <Form >
+                    <Box sx={{      }}>
 
-                            <Field fullWidth sx={{margin: 2}}
+                        <Form>
+
+                            <Field fullWidth disabled sx={{margin: 2}}
                                 component={TextField}
                                 type="email"
                                 name="email"
                                 label="eMail"
+                                value={user.email}
+                                
+                                
                             />
 
                             <br />
@@ -121,6 +122,7 @@ const Checkout = () => {
                                 name="nombre"
                                 type="nombre"
                                 label="Nombre y apellido"
+                                
                             />
 
                             <br />
