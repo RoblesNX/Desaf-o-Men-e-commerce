@@ -20,7 +20,7 @@ const SuccessOrder = ({ orderId }) => {
                     textAlign="center"
                 >
 
-                    Compra exitosa!
+                    ¡Compra exitosa!
 
                 </Typography>
 
@@ -35,9 +35,29 @@ const SuccessOrder = ({ orderId }) => {
                 alignItems="center"
             >
 
-                <Typography variant="body1" component='p' p sx={{ padding: 2, textAlign: 'center' }} >Tu número de orden es: <strong>{orderId}</strong></Typography>
+                <Typography
+                    variant="body1"
+                    component='p'
+                    sx={{
+                        padding: 2,
+                        textAlign: 'center'
+                    }}
+                >
+                    Tu número de orden es: <strong>{orderId}</strong>
 
-                <Button variant='contained' color='primary' size='large' component={Link} to='/'>Volver al inicio</Button>
+                </Typography>
+
+                <Button
+                    variant='contained'
+                    color='primary'
+                    size='large'
+                    component={Link}
+                    to='/'
+                >
+
+                    Volver al inicio
+
+                </Button>
 
             </Box>
 

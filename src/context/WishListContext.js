@@ -16,7 +16,6 @@ export const WishListProvider = ({ children }) => {
         return wishList.some((item) => item.id === id)
     }
 
-
     const removeItemWishList = (id) => {
         setWishList(wishList.filter((item) => item.id !== id))
     }

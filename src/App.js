@@ -9,15 +9,19 @@ function App() {
   return (
 
     <AuthProvider>
-       <WishListProvider>
+
+      <WishListProvider>
+
         <CartProvider>
 
           <AppRouter />
 
         </CartProvider>
+
       </WishListProvider>
+
     </AuthProvider>
-    
+
   );
 }
 

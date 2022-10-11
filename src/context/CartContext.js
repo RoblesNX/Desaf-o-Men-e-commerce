@@ -16,8 +16,6 @@ export const CartProvider = ({ children }) => {
         return cart.some((item) => item.id === id)
     }
 
-    // FUNCIÓN PARA INCREMENTAR UNIDADES EN EL CARRITO
-
     const increaseQuantityInCart = (item) => {
         const inCart = cart.find((productInCart) => productInCart.id === item.id);
         if (item.stock > inCart.cantidad) {
@@ -32,8 +30,6 @@ export const CartProvider = ({ children }) => {
             }
         }
     };
-
-    // FUNCION PARA REDUCIR CANTIDADES EN EL CARRITO
 
     const decreaseQuantityInCart = (item) => {
         const inCart = cart.find((productInCart) => productInCart.id === item.id);
@@ -87,7 +83,7 @@ export const CartProvider = ({ children }) => {
         }}>
             {children}
         </CartContext.Provider>)
-
+        
 }
 
 export const useCartContext = () => {

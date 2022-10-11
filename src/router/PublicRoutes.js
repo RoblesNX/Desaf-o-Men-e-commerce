@@ -8,16 +8,15 @@ import Register from '../components/Register/Register'
 
 const PublicRoutes = () => {
     
-    
     return (
         <Routes>
-            <Route path='/login' element={<Login />} />
-            <Route path='/register' element={<Register />} />
-            <Route path='/' element={<Home />} />
-            <Route path='/productos/:categoryId' element={<ItemListContainer />} />
-            <Route path='/item/:itemId' element={<ItemDetailContainer />} />
-            <Route path='/cart' element={<Cart />} />
-            <Route path='*' element={<Navigate to="/login" />} />
+            <Route path='/login' element={<Login />}/>
+            <Route path='/register' element={<Register />}/>
+            <Route path='/' element={<Home />}/>
+            <Route path='/productos/:categoryId' element={<ItemListContainer />}/>
+            <Route path='/item/:itemId' element={<ItemDetailContainer />}/>
+            <Route path='/cart' element={<Cart />}/>
+            <Route path='*' element={<Navigate to="/login" />}/>
         </Routes>
     )
 }
