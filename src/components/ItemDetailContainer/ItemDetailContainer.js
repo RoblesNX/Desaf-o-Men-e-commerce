@@ -30,7 +30,7 @@ const ItemDetailContainer = () => {
         }, [itemId])
 
     return (
-        <Container sx={{marginTop: 15}}>
+        <Container>
             {loading ? <Loader/> : <ItemDetail item={item} />}
         </Container>
     )

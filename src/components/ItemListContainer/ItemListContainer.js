@@ -31,7 +31,7 @@ const ItemListContainer = () => {
     }, [categoryId])
 
     return (
-        <Container sx={{ marginTop: 12, marginBottom: 10 }}>
+        <Container>
             {loading ? <Loader /> : <ItemList productos={productos} />}
         </Container>
     );

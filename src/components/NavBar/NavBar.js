@@ -134,13 +134,6 @@ const NavBar = () => {
                         {user ?
 
                             <Box>
-                                <Button
-                                    component={Link}
-                                    to="/"
-                                    variant="contained"
-                                    sx={{ p: 0, marginLeft: 2 }}>
-                                    <Typography textAlign="center" sx={{ my: 1, mx: 2, color: 'white' }}> Mi cuenta </Typography>
-                                </Button>
 
                                 <Button
                                     variant="contained"
@@ -148,6 +141,14 @@ const NavBar = () => {
                                     to="/ordenes"
                                     sx={{ p: 0, marginLeft: 2 }}>
                                     <Typography textAlign="center" sx={{ my: 1, mx: 2, color: 'white' }}> Ordenes </Typography>
+                                </Button>
+
+                                <Button
+                                    component={Link}
+                                    to="/wishlist"
+                                    variant="contained"
+                                    sx={{ p: 0, marginLeft: 2 }}>
+                                    <Typography textAlign="center" sx={{ my: 1, mx: 2, color: 'white' }}> Wishlist </Typography>
                                 </Button>
 
                                 <Button

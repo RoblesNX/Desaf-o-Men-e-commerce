@@ -1,54 +1,101 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
-import { Button, CardHeader, Avatar, Card, CardMedia, CardActions, IconButton, Typography, Grid } from '@mui/material';
-import { red } from '@mui/material/colors';
+import { CardHeader, Avatar, Card, CardMedia, Typography, Grid, CardActionArea } from '@mui/material';
 
 
 const Item = ({ producto }) => {
 
     return (
-        <div>
-            <Card sx={{ maxWidth: 350, borderRadius: 4, paddingBottom: 1 }} elevation={5}>
+
+        <Card
+            elevation={5}
+            sx={{
+                maxWidth: 350,
+                borderRadius: 4
+            }}
+        >
+            <CardActionArea
+                component={Link}
+                to={`/item/${producto.id}`}
+            >
                 <CardHeader
                     avatar={
-                        <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
+                        <Avatar sx={{ bgcolor: "red" }}>
                             NS
                         </Avatar>
                     }
-                    action={
-                        <IconButton aria-label="settings">
-                        </IconButton>
-                    }
+
                     title={
-                        <Typography variant="body" component='p' sx={{fontWeight: 'medium', fontSize: 18}}>
+                        <Typography
+                            variant="body"
+                            component='p'
+                            fontWeight="medium"
+                            fontSize="18px"
+                        >
+
                             {producto.nombre}
+
                         </Typography>
                     }
                 />
-                
 
                 <CardMedia
                     component="img"
-                    height="auto"
                     image={producto.img}
                     alt={producto.nombre}
-                    sx={{marginBottom: 1}}
+                    sx={{ mb: 1 }}
                 />
 
-<Grid container>
-                    <Grid item lg={12} md={12} xs={12} sx={{ background: '#ebebeb', padding: 1, display: 'flex', justifyContent: 'space-evenly', marginBottom: 1}}>
-                    <Typography variant="body1" component='p' >Precio $ {producto.precio} </Typography>
-                    {producto.stock > 0
-                        ? <Typography variant="body1" component='p' sx={{fontWeight: 'medium'}}>Stock: {producto.stock} </Typography>
-                        : <Typography variant="body1" component='p' sx={{fontWeight: 'medium', color: "red"}}> SIN STOCK</Typography>}
-                    </Grid>
-                </Grid>
-                <CardActions>
-                    <Button sx={{ borderRadius: 2 }} fullWidth size="small" variant="contained" component={Link} to={`/item/${producto.id}`}>Ver detalle del producto</Button>
-                </CardActions>
+                <Grid container >
 
-            </Card>
-        </div >
+                    <Grid item
+                        md={12}
+                        p={2}
+                        bgcolor="#ebebeb"
+                        display="flex"
+                        justifyContent="space-evenly"
+                    >
+                        <Typography
+                            variant="body1"
+                            component='p'
+                            fontWeight="medium"
+                        >
+
+                            Precio $ {producto.precio}
+
+                        </Typography>
+
+                        {producto.stock > 0
+                            ? <Typography
+                                variant="body1"
+                                component='p'
+                                fontWeight="medium"
+                            >
+
+                                Stock: {producto.stock}
+
+                            </Typography>
+
+                            : <Typography
+                                variant="body1"
+                                component='p'
+                                fontWeight="medium"
+                                color="red"
+                                textTransform="uppercase"
+                            >
+
+                                Sin Stock
+
+                            </Typography>}
+
+                    </Grid>
+
+                </Grid>
+
+            </CardActionArea>
+
+        </Card>
+
     )
 }
 

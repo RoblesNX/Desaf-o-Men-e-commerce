@@ -1,7 +1,7 @@
 import React from 'react'
 import { useAuthContext } from '../../context/AuthContext'
 import { useNavigate, Link } from "react-router-dom"
-import { Button, Typography, Box, Grid, TextField} from '@mui/material'
+import { Button, Typography, Grid, TextField, Stack } from '@mui/material'
 import { useState } from "react"
 
 
@@ -22,12 +22,12 @@ const Login = () => {
       navigate(-1)
     } catch (error) {
       if (error.code === 'auth/user-not-found') {
-        setError('Correo invalido')
+        setError('Correo inválido')
       }
       if (error.code === 'auth/wrong-password') {
-        setError('Contraseña invalida')
+        setError('Contraseña inválida')
       }
-      if (error.code === ' auth/user-not-found') {
+      if (error.code === 'auth/user-not-found') {
         setError('Usuario no encontrado')
       }
     }
@@ -41,75 +41,143 @@ const Login = () => {
       await loginWithGoogle();
       navigate(-1);
     } catch (error) {
-      setError(error.message);
+      if (error.code === 'auth/popup-closed-by-user') {
+        setError('Pop-up de autenticación cerrado')
+      }
     }
   };
 
   const handleResetPassword = async (e) => {
     e.preventDefault();
-    if (!user.email) return setError("Write an email to reset password");
+    if (!user.email) return setError("Completá tu eMail para reseter la contraseña");
     try {
       await resetPassword(user.email);
-      setError('We sent you an email. Check your inbox')
+      setError('Te enviamos un eMail. Revisa tu bandeja de entrada')
     } catch (error) {
       setError(error.message);
     }
   };
 
   return (
-    <Box sx={{ marginTop: 15, display: 'flex', justifyContent: 'center'}}>
 
-      <Typography variant="h4" component='h5'>Login</Typography>
+    <Stack
+      m={18}
+      alignItems="center"
+      
+    >
 
-      <Grid container my={4}>
-        <form
-          onSubmit={handleSubmit}
+      <Typography
+        variant="h4"
+        component='h5'
+        p={4}
+      >
+
+        Acceder a tu cuenta
+
+      </Typography>
+
+      <form
+        onSubmit={handleSubmit}
+      >
+        <Grid container
+          justifyContent="center"
+          spacing={2}
         >
-          <Grid item md={12} sx={{padding: 2}}>
+
+          <Grid item
+            md={10}
+            sx={{ padding: 2 }}
+          >
+
             {error && <Typography variant="body1" component='p'>{error}</Typography>}
+
             <TextField
               type="email"
               name="email"
               id="email"
               onChange={handleChange}
               label="eMail"
+              fullWidth
+              required
             />
+
           </Grid>
-          <Grid item md={12} sx={{padding: 2}}>
+
+          <Grid item
+            md={10}
+            sx={{ padding: 2 }}
+          >
+
             <TextField
+              fullWidth
               type="password"
               name="password"
               id="password"
-              onChange={handleChange}
               label="Password"
+              required
+              onChange={handleChange}
             />
 
           </Grid>
 
-          <Grid item md={12} sx={{padding: 2}}>
-            <Button
-              type="submit"
+          <Grid item
+            md={12}
+            sx={{ padding: 2 }}
+          >
+            <Stack
+              justifyContent="space-evenly"
+              direction="row"
             >
-              Sign In
-            </Button>
-            <Button component={Link}
-              to="#!"
-              onClick={handleResetPassword}
-            >
-              Forgot Password?
-            </Button>
-            </Grid>
-            <Grid item md={12} sx={{padding: 2}}>
-            <Button
-              onClick={handleGoogleSignin}
-            >
-              Google login
-            </Button>
-            <Typography sx={{ margin: 1 }} variant="body1" component={Link} to='/register'>Register</Typography>
+
+              <Button
+                variant="contained"
+                type="submit"
+              >
+
+                Acceder
+
+              </Button>
+
+              <Button
+                variant="outlined"
+                component={Link}
+                to="#!"
+                onClick={handleResetPassword}
+              >
+
+                Olvidé mi contraseña
+
+              </Button>
+
+              <Button
+                variant="outlined"
+                onClick={handleGoogleSignin}
+              >
+
+                Acceder con Google
+
+              </Button>
+
+              <Button
+                variant="outlined"
+                component={Link}
+                to='/register'
+              >
+
+                Registrarse
+
+              </Button>
+
+            </Stack>
+
           </Grid>
-        </form>
-      </Grid>
-    </Box>
+
+        </Grid>
+
+      </form>
+
+    </Stack>
+
   );
 }
 export default Login

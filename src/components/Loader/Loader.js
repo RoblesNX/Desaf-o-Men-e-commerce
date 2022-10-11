@@ -1,12 +1,12 @@
 import * as React from 'react';
 import CircularProgress from '@mui/material/CircularProgress';
-import Box from '@mui/material/Box';
+import { Stack } from '@mui/material/';
 
 const Loader = () => {
   return (
-    <Box direction='row' justifyContent='center' sx={{ display: 'flex' }}>
+    <Stack justifyContent='center' alignItems="center" my={12}>
       <CircularProgress />
-    </Box>
+    </Stack>
   );
 }
 

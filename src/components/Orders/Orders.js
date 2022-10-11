@@ -2,71 +2,275 @@ import * as React from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
-import { Box, CardMedia } from "@mui/material"
+import { Box, CardMedia, Grid, Divider } from "@mui/material"
 
 
 const Orders = ({ order }) => {
 
   return (
 
-    <Card sx={{ padding: 2, borderRadius: 3, marginBottom: 4 }}>
+    <Card sx={{
+      py: 5,
+      px: 5,
+      borderRadius: 3,
+      marginTop: 10,
+      marginBottom: 10,
+      border: 2,
+      borderColor: 'grey.400'
+    }}
+    >
 
-      <Box sx={{ alignItems: 'center', justifyContent: 'space-around' }} elevation={5}>
+      <CardContent sx={{
+        padding: 0,
+        mb: 3
+      }}
+      >
 
-        <CardContent>
-          <Typography variant="h4" component='h5'>
-            Datos del pedido
-          </Typography>
+        <Box sx={{
+          borderRadius: '15px',
+          overflow: 'hidden'
+        }}
+        >
 
-          <Typography variant="h5" component='h5'>
-            eMail: {order.comprador.email}
-          </Typography>
-          <Typography variant="h5" component='h5'>
-            Teléfono: {order.comprador.telefono}
-          </Typography>
-          <Typography variant="h5" component='h5'>
-            Nombre: {order.comprador.nombre}
-          </Typography>
-          <Typography variant="h5" component='h5'>
-            Dirección: {order.comprador.direccion}
-          </Typography>
+          <Grid container>
 
-          <Typography variant="h5" component='h5'>
-            Número de orden:
-          </Typography>
-        </CardContent>
+            <Grid item
+              md={4}
+              sx={{
+                background: '#1976d2',
+                p: 2
+              }}
+            >
+              <Typography
+                variant='body1'
+                component="p"
+                color={'white'}
+                fontWeight="medium"
+              >
 
-          {order.items.map((items, index) => {
-            return <Box sx={{display: 'flex', flexDirection: 'row', justifyContent: 'space-around'}} key={index}>
+                Número de orden
 
-              <CardMedia
-                component="img"
-                image={items.img}
-                alt="imagen"
-                sx={{ maxWidth: '100px', marginBottom: 1 }}
-              />
-
-              <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'right', justifyContent: 'center'}}>
-
-              <Typography variant="h5" component='h5'>
-                Precio ${items.precio}
               </Typography>
 
-              <Typography variant="h5" component='h5'>
-                Artículo: {items.nombre}
+            </Grid>
+
+            <Grid item
+              md={8}
+              sx={{
+                background: '#388ee3',
+                p: 2
+              }}
+            >
+              <Typography
+                variant='body1'
+                component="p"
+                color={'white'}
+                fontWeight="medium"
+              >
+
+                #{order.id}
+
               </Typography>
 
-              <Typography variant="h5" component='h5'>
-                Cantidad: {items.cantidad}
+            </Grid>
+
+
+            <Divider sx={{ width: "100%" }} />
+
+            <Grid item
+              md={4}
+              sx={{
+                background: '#ebebeb',
+                p: 2
+              }}
+            >
+              <Typography
+                variant='body1'
+                component="p"
+              >
+
+                Teléfono
+
               </Typography>
-              </Box>
-            </Box>
-          })}
-        
-        <Typography variant="h5" component='h5'>
-            Total de la orden: ${order.total}
-          </Typography>
-      </Box>
+
+            </Grid>
+
+            <Grid item
+              md={8}
+              sx={{
+                background: '#f5f5f5',
+                p: 2
+              }}
+            >
+              <Typography
+                variant='body1'
+                component="p"
+              >
+
+                {order.comprador.telefono}
+
+              </Typography>
+
+            </Grid>
+
+            <Divider sx={{ width: "100%" }} />
+
+            <Grid item
+              md={4}
+              sx={{
+                background: '#ebebeb',
+                padding: 2
+              }}
+            >
+              <Typography
+                variant='body1'
+                component="p">
+
+                Nombre:
+
+              </Typography>
+
+            </Grid>
+
+            <Grid item
+              md={8}
+              sx={{
+                background: '#f5f5f5',
+                padding: 2
+              }}
+            >
+
+              <Typography
+                variant='body1'
+                component="p"
+                sx={{ textTransform: 'capitalize' }}
+              >
+
+                {order.comprador.nombre}
+
+              </Typography>
+
+            </Grid>
+
+            <Divider sx={{ width: "100%" }} />
+
+            <Grid item
+              md={4}
+              sx={{
+                background: '#ebebeb',
+                padding: 2
+              }}
+            >
+              <Typography
+                variant='body1'
+                component="p">
+
+                Dirección:
+
+              </Typography>
+
+            </Grid>
+
+            <Grid item
+              md={8}
+              sx={{
+                background: '#f5f5f5',
+                padding: 2
+              }}
+            >
+
+              <Typography
+                variant='body1'
+                component="p"
+                sx={{ textTransform: 'capitalize' }}
+              >
+
+                {order.comprador.direccion}
+
+              </Typography>
+
+            </Grid>
+
+            <Divider sx={{ width: "100%" }} />
+
+            <Grid item
+              md={4}
+              sx={{
+                background: '#ebebeb',
+                padding: 2
+              }}
+            >
+              <Typography
+                variant='body1'
+                component="p">
+
+                Total
+
+              </Typography>
+
+            </Grid>
+
+            <Grid item
+              md={8}
+              sx={{
+                background: '#f5f5f5',
+                padding: 2
+              }}
+            >
+
+              <Typography
+                variant='body1'
+                component="p"
+                sx={{ textTransform: 'capitalize' }}
+              >
+
+                ${order.total}
+
+              </Typography>
+
+            </Grid>
+
+          </Grid>
+
+        </Box>
+
+      </CardContent>
+
+      {order.items.map((items, index) => {
+        return <Grid container key={index} sx={{ border: 2, borderColor: 'grey.200', borderRadius: 3, p: 5, my: 2 }}>
+
+          <Grid item md={6} pl={8}>
+
+            <CardMedia
+              component="img"
+              image={items.img}
+              alt="imagen"
+              sx={{ maxWidth: '100px' }}
+            />
+
+          </Grid>
+
+          <Grid item md={6}>
+
+            <Typography variant="h6" component='p'>
+              {items.nombre}
+            </Typography>
+
+            <Typography variant="h6" component='p'>
+              Precio: ${items.precio}
+            </Typography>
+
+            <Typography variant="h6" component='p'>
+              Cantidad: {items.cantidad}
+            </Typography>
+
+          </Grid>
+
+        </Grid>
+
+
+      })}
+
     </Card>
   )
 }
