@@ -6,6 +6,7 @@ import { Container } from '@mui/system';
 import Loader from '../Loader/Loader'
 import OrderList from '../OrdersList/OrderList'
 import { useAuthContext } from '../../context/AuthContext'
+import EmptyOrders from '../EmptyOrders/EmptyOrders'
 
 const OrdersContainer = () => {
     const [ordenes, setOrdenes] = useState([])
@@ -31,6 +32,13 @@ const OrdersContainer = () => {
                 setLoading(false)
             })
     }, [user.uid])
+
+
+    if (ordenes.length === 0) {
+        return (
+            <EmptyOrders />
+        )
+    }
 
     return (
         <Container>
