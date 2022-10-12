@@ -87,4 +87,4 @@ $npm install sweetalert2
 $npm install firebase
 ```
 
-## Proyecto realizado con 💙 por @RoblesNX 
+## Proyecto realizado con 💙 por [RoblesNX](https://github.com/RoblesNX)
