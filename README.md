@@ -14,7 +14,7 @@ https://admirable-raindrop-ead2a5.netlify.app/
 
 ## Instalación & Ejecución 🚀
 
-Steps to install and run the project:
+Pasos para instalar y correr el proyecto
 
 ### Node JS & React App
 
@@ -36,7 +36,7 @@ $npm install
 $npm start
 ```
 
-#### Librerías / Frameworks 📚
+## Librerías / Frameworks 📚
 
 ### React Router
 
