@@ -33,7 +33,7 @@ const Checkout = () => {
     return (
 
         <Formik
-            initialValues={{ nombre: "", direccion: "", email: "", telefono: "" }}
+            initialValues={{ nombre: "", direccion: "", telefono: "" }}
             validationSchema={Yup.object({
                 nombre: Yup.string()
                     .required("Requerido"),

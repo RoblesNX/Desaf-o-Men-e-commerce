@@ -19,13 +19,13 @@ const Register = () => {
     <Formik
       initialValues={{ email: '', password: '' }}
       validationSchema={Yup.object({
-        email: Yup.string().email('Invalid email address').required('Required'),
-        // password: Yup.string()
-        //   .required('Please Enter your password')
-        //   .matches(
-        //     /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
-        //     "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and one special case Character"
-        //   )
+        email: Yup.string().email('Correo electrónico inválido').required('Requerido'),
+        password: Yup.string()
+          .required('Por favor ingrese su contraseña')
+          .matches(
+            /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
+            "Debe tener 8 caracteres, una mayúscula, una minúscula, un número y un caracter especial"
+          )
       })}
       onSubmit={async (values) => {
         setError("")
