@@ -77,6 +77,7 @@ const Register = () => {
                   label="eMail"
                   fullWidth
                   required
+                  autoComplete="off"
                   sx={{ margin: 2 }}
                 />
 
@@ -87,6 +88,7 @@ const Register = () => {
                   label="Contraseña"
                   fullWidth
                   required
+                  autoComplete="off"
                   sx={{ margin: 2 }}
                 />
               </Grid>
