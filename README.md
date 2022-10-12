@@ -1,71 +1,88 @@
-# Getting Started with Create React App
+# Desafío eCommerce con ReactJS 🛒 ✅
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Este proyecto tiene como objetivo recrear una tiende de eCommerce con las principales funcionaldades tales como: Historial de órdenes, lista de deseos, carrito de compras, registro y acceso a cuenta personal, entre otros.
 
-## Available Scripts
+## Website Deploy 🏁
 
-In the project directory, you can run:
+https://admirable-raindrop-ead2a5.netlify.app/
 
-### `npm start`
+## Tecnologías empleadas 🛠️
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- [React JS](https://es.reactjs.org/)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- [Node JS](https://nodejs.org/)
 
-### `npm test`
+## Instalación & Ejecución 🚀
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Steps to install and run the project:
 
-### `npm run build`
+### Node JS & React App
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. Instalar Node JS desde https://nodejs.org/en/
+2. Clonar el proyecto
+```
+$git clone https://github.com/RoblesNX/Desafio-ecommerce.git
+```
+3. Abra la consola en su editor de código y cambie el directorio al de su proyecto actual
+```
+$cd yourProjectDirectory
+```
+4. Instale las librerías
+```
+$npm install
+```
+5. Ejecute la app
+```
+$npm start
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+#### Librerías / Frameworks 📚
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### React Router
 
-### `npm run eject`
+1. [React Router](https://reactrouter.com/docs/en/v6/getting-started/installation)
+```
+$npm install react-router-dom
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Formik
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1. [Formik](https://formik.org/docs/overview)
+```
+$npm install formik --save
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Material UI
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+1. [Material UI](https://mui.com/material-ui/getting-started/installation/)
+```
+$npm install @mui/material @emotion/react @emotion/styled
+```
 
-## Learn More
+### Formik MUI
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+1. [Formik MUI](https://stackworx.github.io/formik-mui/docs/guide/getting-started)
+```
+$npm install formik-mui
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Yup
 
-### Code Splitting
+1. [Yup](https://www.npmjs.com/package/yup)
+```
+$npm install -S yup
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### SweetAlert2
 
-### Analyzing the Bundle Size
+1. [SweetAlert2](https://sweetalert2.github.io/#download)
+```
+$npm install sweetalert2
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### Firebase
 
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-# Desaf-o-Men-e-commerce
+1. [Firebase](https://firebase.google.com/docs/web/setup)
+```
+$npm install firebase
+```

@@ -43,7 +43,6 @@ const RelatedItems = ({ categoria }) => {
                 ? <Loader />
                 : <Container productos={productos} sx={{ marginTop: 5, marginBottom: 15 }}>
 
-
                     <Typography variant="h4" component='h5' align="center">
                         Productos similares
                     </Typography>
