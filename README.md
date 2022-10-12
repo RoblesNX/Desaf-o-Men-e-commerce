@@ -1,6 +1,15 @@
 # Desafío eCommerce con ReactJS 🛒 ✅
 
-Este proyecto tiene como objetivo recrear una tiende de eCommerce con las principales funcionaldades tales como: Historial de órdenes, lista de deseos, carrito de compras, registro y acceso a cuenta personal, entre otros.
+Este proyecto llamado "Naiky Store" tiene como objetivo recrear una tienda de eCommerce de indumentaria y accesorios con las principales funcionaldades tales como: 
+
+- Historial de órdenes
+- Lista de deseos
+- Carrito de compras
+- Registro y acceso de usuarios
+- Categorías de productos
+- Productos relacionados
+- Gestión de stock según base de datos
+- Y muchas más
 
 ## Website Deploy 🏁
 
